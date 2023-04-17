@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  reto01GHD
+//  reto01FW
 //
 //  Created by user239944 on 4/17/23.
 //
@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        title = "Pokedex"
     }
 
 
