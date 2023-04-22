@@ -8,9 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    // variables
-    private let myPokemonCollection = [("charmander","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png","fuego"),("pikachu",  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png","electricidad" ),("squirtle","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png", "agua"),("bulbasaur","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png","planta")]
+    
+    var pokemons:[Pokemon] = []
     
     private let cellWidth = UIScreen.main.bounds.width / 2
     
@@ -21,6 +20,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let pokemon1 = Pokemon(name: "pikachu",type: "electric",img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png", hp: 35, attack: 55, defense: 40, weight: 60, height: 4)
+        
+        let pokemon2 = Pokemon(name: "charmander", type: "fire", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png", hp: 39, attack: 52, defense: 43, weight: 85, height: 6)
+        
+        let pokemon3 = Pokemon(name: "squirtle", type: "water", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png", hp: 44, attack: 48, defense: 65, weight: 90, height: 5)
+        
+        let pokemon4 = Pokemon(name: "bulbasaur", type: "poison", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png", hp: 45, attack: 49, defense: 49, weight: 69, height: 7)
+        
+        let pokemon5 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
+        
+        pokemons = [pokemon1,pokemon2,pokemon3,pokemon4]
         
         // collectionView Pokedex
         collectioViewPokedex.backgroundColor = .red
@@ -36,21 +46,25 @@ class ViewController: UIViewController {
 
 }
 
-
 extension ViewController: UICollectionViewDataSource{
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myPokemonCollection.count
+        return pokemons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectioViewPokedex.dequeueReusableCell(withReuseIdentifier: "cellPokemon", for: indexPath) as? CollectionViewCellPokemon
         
-        cell!.lblNamePokemon.text = myPokemonCollection[indexPath.row].0
-        cell!.lblTypePokemon.text = myPokemonCollection[indexPath.row].2
+        
+        let pokemon = pokemons[indexPath.row]
+        cell!.lblNamePokemon.text = pokemon.name
+        cell!.lblTypePokemon.text = pokemon.type
         
         
-        let urld = URL(string: myPokemonCollection[indexPath.row].1)!
+        let urld = URL(string: pokemon.img)!
         
         if let data = try? Data(contentsOf:urld) {
                 // Create Image and Update Image View
