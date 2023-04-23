@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnCompare: UIButton!
     @IBOutlet weak var collectioViewPokedex: UICollectionView!
     
+    @IBOutlet weak var pokemonSearchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -29,8 +30,10 @@ class ViewController: UIViewController {
         let pokemon4 = Pokemon(name: "bulbasaur", type: "poison", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png", hp: 45, attack: 49, defense: 49, weight: 69, height: 7)
         
         let pokemon5 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
+        let pokemon6 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
+        let pokemon7 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
         
-        pokemons = [pokemon1,pokemon2,pokemon3,pokemon4]
+        pokemons = [pokemon1,pokemon2,pokemon3,pokemon4,pokemon5,pokemon6,pokemon7]
         
         // collectionView Pokedex
         collectioViewPokedex.backgroundColor = .red
@@ -41,6 +44,9 @@ class ViewController: UIViewController {
         
         // btnCompare
         btnCompare.setTitle("Compare", for: .normal)
+        
+        // pokemonSearchBar
+        pokemonSearchBar.delegate = self
     }
 
 
@@ -73,10 +79,42 @@ extension ViewController: UICollectionViewDataSource{
         return cell!
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "informationSegue"{
+            if let destinationVC = segue.destination as? InformationViewController{
+                if let pokemon = sender as? Pokemon {
+                    destinationVC.namePokemon = pokemon.name
+                    
+                    destinationVC.typePokemon = pokemon.type
+                    
+                    destinationVC.hpPokemon = pokemon.hp
+                    
+                    destinationVC.attackPokemon =
+                    pokemon.attack
+                    
+                    destinationVC.defensePokemon =
+                    pokemon.defense
+                    
+                    destinationVC.weightPokemon = pokemon.weight
+                    
+                    destinationVC.heightPokemon = pokemon.height
+                    
+                    destinationVC.imgPokemon = pokemon.img
+                }
+            }
+        }
+            
+    }
 }
 
+
 extension ViewController: UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pokemon = pokemons[indexPath.row]
+        performSegue(withIdentifier: "informationSegue", sender: pokemon)
+        
+    }
     
     
 }
@@ -85,6 +123,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: cellWidth, height: cellWidth)
+    }
+}
+
+extension ViewController: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        pokemonSearchBar.resignFirstResponder()
+        print("hola")
     }
 }
 

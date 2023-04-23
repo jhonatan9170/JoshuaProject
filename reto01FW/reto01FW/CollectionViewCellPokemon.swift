@@ -15,8 +15,10 @@ class CollectionViewCellPokemon: UICollectionViewCell {
     
     @IBOutlet weak var lblNamePokemon: UILabel!
     
-    
     @IBOutlet weak var selectCellPokemon: UIButton!
+    
+    
+    var namePokemon: String?
     
     
     @IBOutlet weak var lblTypePokemon: UILabel!
@@ -25,6 +27,8 @@ class CollectionViewCellPokemon: UICollectionViewCell {
         // Initialization code
         selectCellPokemon.setTitle("Select", for: .normal
         )
+        
+        
       
     }
 
