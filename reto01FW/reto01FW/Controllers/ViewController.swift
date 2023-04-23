@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var pokemons:[Pokemon] = []
+    var filteredPokemon = [Pokemon]()
+    var pokemonArray = [Pokemon]()
     
     private let cellWidth = UIScreen.main.bounds.width / 2
     
@@ -32,6 +34,8 @@ class ViewController: UIViewController {
         let pokemon5 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
         let pokemon6 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
         let pokemon7 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
+        
+        pokemonArray = [pokemon1,pokemon2,pokemon3,pokemon4,pokemon5,pokemon6,pokemon7]
         
         pokemons = [pokemon1,pokemon2,pokemon3,pokemon4,pokemon5,pokemon6,pokemon7]
         
@@ -129,8 +133,16 @@ extension ViewController: UICollectionViewDelegateFlowLayout{
 extension ViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        pokemonSearchBar.resignFirstResponder()
+        
+        if let searchText = searchBar.text, !searchText.isEmpty {
+            filteredPokemon = pokemonArray.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+                pokemons = filteredPokemon
+                } else {
+                    pokemons = pokemonArray
+                }
+        collectioViewPokedex.reloadData()
         print("hola")
+        
     }
 }
 
