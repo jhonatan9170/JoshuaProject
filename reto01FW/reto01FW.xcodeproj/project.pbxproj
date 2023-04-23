@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5724EF1629F360440023C76B /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724EF1529F360440023C76B /* PokemonModel.swift */; };
+		5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */; };
 		57B2BDDF29F458D000FA7766 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B2BDDE29F458D000FA7766 /* InformationViewController.swift */; };
 		9F8FC86629ED90CD00548589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC86529ED90CD00548589 /* AppDelegate.swift */; };
 		9F8FC86829ED90CD00548589 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC86729ED90CD00548589 /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		5724EF1529F360440023C76B /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
+		5739160E29F5B93E0005BC1E /* PokemonData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonData.xcdatamodel; sourceTree = "<group>"; };
 		57B2BDDE29F458D000FA7766 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		9F8FC86229ED90CD00548589 /* reto01FW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reto01FW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F8FC86529ED90CD00548589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		5724EF1229F35B230023C76B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9F8FC87B29ED9A1B00548589 /* CollectionViewCellPokemon.swift */,
 				9F8FC86929ED90CD00548589 /* ViewController.swift */,
 				9F8FC87929ED91E100548589 /* ViewControllerFavorite.swift */,
 				57B2BDDE29F458D000FA7766 /* InformationViewController.swift */,
@@ -68,6 +71,7 @@
 		5724EF1329F35B300023C76B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F8FC87C29ED9A1B00548589 /* CollectionViewCellPokemon.xib */,
 				9F8FC86B29ED90CD00548589 /* Main.storyboard */,
 			);
 			path = Views;
@@ -108,8 +112,7 @@
 				9F8FC86E29ED90CF00548589 /* Assets.xcassets */,
 				9F8FC87029ED90CF00548589 /* LaunchScreen.storyboard */,
 				9F8FC87329ED90CF00548589 /* Info.plist */,
-				9F8FC87B29ED9A1B00548589 /* CollectionViewCellPokemon.swift */,
-				9F8FC87C29ED9A1B00548589 /* CollectionViewCellPokemon.xib */,
+				5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */,
 			);
 			path = reto01FW;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				9F8FC86A29ED90CD00548589 /* ViewController.swift in Sources */,
 				5724EF1629F360440023C76B /* PokemonModel.swift in Sources */,
 				57B2BDDF29F458D000FA7766 /* InformationViewController.swift in Sources */,
+				5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */,
 				9F8FC87D29ED9A1B00548589 /* CollectionViewCellPokemon.swift in Sources */,
 				9F8FC86629ED90CD00548589 /* AppDelegate.swift in Sources */,
 				9F8FC87A29ED91E100548589 /* ViewControllerFavorite.swift in Sources */,
@@ -408,6 +412,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5739160E29F5B93E0005BC1E /* PokemonData.xcdatamodel */,
+			);
+			currentVersion = 5739160E29F5B93E0005BC1E /* PokemonData.xcdatamodel */;
+			path = PokemonData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9F8FC85A29ED90CD00548589 /* Project object */;
 }
