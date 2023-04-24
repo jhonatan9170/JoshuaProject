@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class CollectionViewCellPokemon: UICollectionViewCell {
 
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     @IBOutlet weak var viewCellPokemon: UIView!
     
     @IBOutlet weak var imgPokemon: UIImageView!
@@ -18,6 +21,7 @@ class CollectionViewCellPokemon: UICollectionViewCell {
     @IBOutlet weak var selectCellPokemon: UIButton!
     
     
+    @IBOutlet weak var favoriteBtn: UIButton!
     var namePokemon: String?
     
     
@@ -25,11 +29,27 @@ class CollectionViewCellPokemon: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        selectCellPokemon.setTitle("Select", for: .normal
-        )
+       
         
         
       
     }
 
+    @IBAction func favoriteAction(_ sender: UIButton) {
+        let entidad = NSEntityDescription.entity(forEntityName: "PokemonsFavorite", in: context)!
+            let objeto = NSManagedObject(entity: entidad, insertInto: context)
+
+            // Establece los valores de los atributos de la entidad con los datos que deseas almacenar
+        objeto.setValue(lblNamePokemon.text, forKeyPath: "name")
+        objeto.setValue(lblTypePokemon.text, forKey: "type")
+
+            // Guarda los cambios en Core Data
+            do {
+                try context.save()
+                print(lblNamePokemon.text as Any)
+                print("Datos guardados exitosamente")
+            } catch let error as NSError {
+                print("No se pudo guardar los datos. \(error), \(error.userInfo)")
+            }
+    }
 }

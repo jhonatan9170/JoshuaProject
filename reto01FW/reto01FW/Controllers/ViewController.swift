@@ -10,16 +10,23 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    var numPokemonSelected = 0
+    var comparePokemonState = false
     var pokemons:[Pokemon] = []
     var filteredPokemon = [Pokemon]()
     var pokemonArray = [Pokemon]()
     
     private let cellWidth = UIScreen.main.bounds.width / 2
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    private var myPokemonsFavorite:[PokemonsFavorite]?
+    
     // oulets
     @IBOutlet weak var btnCompare: UIButton!
     @IBOutlet weak var collectioViewPokedex: UICollectionView!
     
+    @IBOutlet weak var compareStateBtn: UIButton!
     @IBOutlet weak var pokemonSearchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +61,11 @@ class ViewController: UIViewController {
         pokemonSearchBar.delegate = self
     }
 
-
+    @IBAction func compareStateAction(_ sender: Any) {
+        
+       comparePokemonState = !comparePokemonState
+    }
+    
 }
 
 extension ViewController: UICollectionViewDataSource{
@@ -74,13 +85,14 @@ extension ViewController: UICollectionViewDataSource{
         cell!.lblNamePokemon.text = pokemon.name
         cell!.lblTypePokemon.text = pokemon.type
         
-        
         let urld = URL(string: pokemon.img)!
         
         if let data = try? Data(contentsOf:urld) {
                 // Create Image and Update Image View
             cell!.imgPokemon.image = UIImage(data: data)
             }
+        
+        
         return cell!
     }
     
@@ -127,7 +139,7 @@ extension ViewController: UICollectionViewDelegate{
 extension ViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: cellWidth, height: cellWidth)
+        return CGSize(width: cellWidth, height: cellWidth / 2)
     }
 }
 
