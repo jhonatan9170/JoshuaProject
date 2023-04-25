@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5724EF1629F360440023C76B /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724EF1529F360440023C76B /* PokemonModel.swift */; };
+		572E80AE29F76E1D00E64C8D /* CompareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E80AD29F76E1D00E64C8D /* CompareViewController.swift */; };
 		5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */; };
 		57590C5C29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57590C5A29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift */; };
 		57590C5D29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57590C5B29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		5724EF1529F360440023C76B /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
+		572E80AD29F76E1D00E64C8D /* CompareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareViewController.swift; sourceTree = "<group>"; };
 		5739160E29F5B93E0005BC1E /* PokemonData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonData.xcdatamodel; sourceTree = "<group>"; };
 		57590C5A29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PokemonsFavorite+CoreDataClass.swift"; sourceTree = "<group>"; };
 		57590C5B29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PokemonsFavorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		5724EF1229F35B230023C76B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				572E80AD29F76E1D00E64C8D /* CompareViewController.swift */,
 				9F8FC87B29ED9A1B00548589 /* CollectionViewCellPokemon.swift */,
 				9F8FC86929ED90CD00548589 /* ViewController.swift */,
 				9F8FC87929ED91E100548589 /* ViewControllerFavorite.swift */,
@@ -205,6 +208,7 @@
 				9F8FC87A29ED91E100548589 /* ViewControllerFavorite.swift in Sources */,
 				57590C5C29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift in Sources */,
 				9F8FC86829ED90CD00548589 /* SceneDelegate.swift in Sources */,
+				572E80AE29F76E1D00E64C8D /* CompareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

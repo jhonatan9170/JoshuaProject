@@ -65,9 +65,9 @@ class ViewController: UIViewController {
         
        comparePokemonState = !comparePokemonState
         if comparePokemonState == true {
-            btnCompare.imageView?.image = UIImage(systemName: "seal.fill")
+            compareStateBtn.setImage(UIImage(systemName: "seal.fill"),for: .normal)
         }else{
-            btnCompare.imageView?.image = UIImage(systemName: "seal")
+            compareStateBtn.setImage(UIImage(systemName: "seal"),for: .normal)
         }
     }
     
@@ -135,7 +135,14 @@ extension ViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pokemon = pokemons[indexPath.row]
-        performSegue(withIdentifier: "informationSegue", sender: pokemon)
+        
+        if comparePokemonState == true {
+            let cell = collectioViewPokedex.dequeueReusableCell(withReuseIdentifier: "cellPokemon", for: indexPath) as! CollectionViewCellPokemon
+            cell.viewCellPokemon.backgroundColor = UIColor.gray
+            print("true")
+        }else{
+            performSegue(withIdentifier: "informationSegue", sender: pokemon)
+        }
     }
 }
 
