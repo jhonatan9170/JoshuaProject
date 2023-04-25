@@ -1,13 +1,13 @@
 //
-//  ViewControllerFavorite.swift
+//  CompareViewController.swift
 //  reto01FW
 //
-//  Created by user239944 on 4/17/23.
+//  Created by Joshua Sosa cruz on 24/04/23.
 //
 
 import UIKit
 
-class ViewControllerFavorite: UIViewController {
+class CompareViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

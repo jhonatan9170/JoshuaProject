@@ -20,13 +20,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAH-qH-VWP">
                         <rect key="frame" x="0.0" y="0.0" width="277" height="142"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-3r-5RR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-3r-5RR">
                                 <rect key="frame" x="68" y="15.999999999999998" width="199" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a3-Av-txX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a3-Av-txX">
                                 <rect key="frame" x="68" y="41.333333333333336" width="199" height="20.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -41,7 +41,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8A8-1e-Csu">
                                 <rect key="frame" x="68" y="66.666666666666671" width="199" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                <connections>
+                                    <action selector="favoriteAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="aY8-13-i3i"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -71,16 +74,18 @@
             </constraints>
             <size key="customSize" width="277" height="142"/>
             <connections>
+                <outlet property="favoriteBtn" destination="8A8-1e-Csu" id="ioC-Xt-rTE"/>
                 <outlet property="imgPokemon" destination="dPT-ys-4Ek" id="vbl-UT-Glg"/>
                 <outlet property="lblNamePokemon" destination="fgA-3r-5RR" id="6M0-Is-q1U"/>
                 <outlet property="lblTypePokemon" destination="0a3-Av-txX" id="V5S-wx-ppy"/>
                 <outlet property="selectCellPokemon" destination="8A8-1e-Csu" id="iW7-9K-UTc"/>
                 <outlet property="viewCellPokemon" destination="BAH-qH-VWP" id="1el-ly-rXr"/>
             </connections>
-            <point key="canvasLocation" x="-365.64885496183206" y="72.535211267605632"/>
+            <point key="canvasLocation" x="-365.64885496183206" y="71.83098591549296"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
