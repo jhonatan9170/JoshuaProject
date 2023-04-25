@@ -19,18 +19,14 @@ class ViewControllerFavorite: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         favoritesTableView.dataSource = self
         favoritesTableView.delegate = self
         
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("recarga")
         obtenerData()
-        print("recarga2")
         favoritesTableView.reloadData()
        
     }
@@ -56,7 +52,20 @@ extension ViewControllerFavorite:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "myPokemonFavoriteCell")
         cell.textLabel?.text = myPokemonsFavorite?[indexPath.row].name
-            
+        cell.detailTextLabel?.text = myPokemonsFavorite?[indexPath.row].type
+      
+        if let imageUrlString = myPokemonsFavorite?[indexPath.row].img, let imageUrl = URL(string: imageUrlString) {
+            if let data = try? Data(contentsOf:imageUrl) {
+                    // Create Image and Update Image View
+                cell.imageView?.image = UIImage(data: data)
+            }
+        } else {
+            let image = UIImage(systemName: "person.crop.circle.fill")
+            cell.imageView?.image = image
+        }
+        
+        
+     
         return cell
     }
     

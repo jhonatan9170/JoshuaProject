@@ -64,6 +64,11 @@ class ViewController: UIViewController {
     @IBAction func compareStateAction(_ sender: Any) {
         
        comparePokemonState = !comparePokemonState
+        if comparePokemonState == true {
+            btnCompare.imageView?.image = UIImage(systemName: "seal.fill")
+        }else{
+            btnCompare.imageView?.image = UIImage(systemName: "seal")
+        }
     }
     
 }
@@ -84,7 +89,7 @@ extension ViewController: UICollectionViewDataSource{
         let pokemon = pokemons[indexPath.row]
         cell!.lblNamePokemon.text = pokemon.name
         cell!.lblTypePokemon.text = pokemon.type
-        
+        cell!.imgUrlToFavorite = pokemon.img
         let urld = URL(string: pokemon.img)!
         
         if let data = try? Data(contentsOf:urld) {
@@ -97,6 +102,7 @@ extension ViewController: UICollectionViewDataSource{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "informationSegue"{
             if let destinationVC = segue.destination as? InformationViewController{
                 if let pokemon = sender as? Pokemon {
@@ -130,10 +136,7 @@ extension ViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pokemon = pokemons[indexPath.row]
         performSegue(withIdentifier: "informationSegue", sender: pokemon)
-        
     }
-    
-    
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout{

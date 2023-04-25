@@ -10,6 +10,8 @@ import CoreData
 
 class CollectionViewCellPokemon: UICollectionViewCell {
 
+    var imgUrlToFavorite:String?
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var viewCellPokemon: UIView!
@@ -28,21 +30,17 @@ class CollectionViewCellPokemon: UICollectionViewCell {
     @IBOutlet weak var lblTypePokemon: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-       
-        
-        
+
       
     }
 
     @IBAction func favoriteAction(_ sender: UIButton) {
         let entidad = NSEntityDescription.entity(forEntityName: "PokemonsFavorite", in: context)!
             let objeto = NSManagedObject(entity: entidad, insertInto: context)
-
-            // Establece los valores de los atributos de la entidad con los datos que deseas almacenar
+        
         objeto.setValue(lblNamePokemon.text, forKeyPath: "name")
-        objeto.setValue(lblTypePokemon.text, forKey: "type")
-
+        objeto.setValue(lblTypePokemon.text, forKeyPath: "type")
+        objeto.setValue(imgUrlToFavorite, forKeyPath: "img")
             // Guarda los cambios en Core Data
             do {
                 try context.save()
