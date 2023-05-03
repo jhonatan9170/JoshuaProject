@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571A6E322A021CE20041ACEF /* PokemonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571A6E312A021CE20041ACEF /* PokemonData.swift */; };
 		5724EF1629F360440023C76B /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724EF1529F360440023C76B /* PokemonModel.swift */; };
 		572E80AE29F76E1D00E64C8D /* CompareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E80AD29F76E1D00E64C8D /* CompareViewController.swift */; };
 		5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */; };
 		57590C5C29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57590C5A29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift */; };
 		57590C5D29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57590C5B29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift */; };
+		57590F6F2A0203C9008A6C56 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 57590F6E2A0203C9008A6C56 /* Alamofire */; };
+		57590F712A0203E7008A6C56 /* NetworkingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57590F702A0203E7008A6C56 /* NetworkingProvider.swift */; };
 		57B2BDDF29F458D000FA7766 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B2BDDE29F458D000FA7766 /* InformationViewController.swift */; };
 		9F8FC86629ED90CD00548589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC86529ED90CD00548589 /* AppDelegate.swift */; };
 		9F8FC86829ED90CD00548589 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC86729ED90CD00548589 /* SceneDelegate.swift */; };
@@ -25,11 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		571A6E312A021CE20041ACEF /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
 		5724EF1529F360440023C76B /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 		572E80AD29F76E1D00E64C8D /* CompareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareViewController.swift; sourceTree = "<group>"; };
 		5739160E29F5B93E0005BC1E /* PokemonData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonData.xcdatamodel; sourceTree = "<group>"; };
 		57590C5A29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PokemonsFavorite+CoreDataClass.swift"; sourceTree = "<group>"; };
 		57590C5B29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PokemonsFavorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		57590F702A0203E7008A6C56 /* NetworkingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProvider.swift; sourceTree = "<group>"; };
 		57B2BDDE29F458D000FA7766 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		9F8FC86229ED90CD00548589 /* reto01FW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reto01FW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F8FC86529ED90CD00548589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,12 +54,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57590F6F2A0203C9008A6C56 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		571A6E2D2A0216FF0041ACEF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				571A6E2E2A02171B0041ACEF /* Data */,
+				57590F702A0203E7008A6C56 /* NetworkingProvider.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		571A6E2E2A02171B0041ACEF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				571A6E312A021CE20041ACEF /* PokemonData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		5724EF1129F35B140023C76B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +136,7 @@
 		9F8FC86429ED90CD00548589 /* reto01FW */ = {
 			isa = PBXGroup;
 			children = (
+				571A6E2D2A0216FF0041ACEF /* Network */,
 				5724EF1429F35F000023C76B /* Utilities */,
 				5724EF1329F35B300023C76B /* Views */,
 				5724EF1229F35B230023C76B /* Controllers */,
@@ -142,6 +166,9 @@
 			dependencies = (
 			);
 			name = reto01FW;
+			packageProductDependencies = (
+				57590F6E2A0203C9008A6C56 /* Alamofire */,
+			);
 			productName = reto01FW;
 			productReference = 9F8FC86229ED90CD00548589 /* reto01FW.app */;
 			productType = "com.apple.product-type.application";
@@ -170,6 +197,9 @@
 				Base,
 			);
 			mainGroup = 9F8FC85929ED90CD00548589;
+			packageReferences = (
+				57590F6D2A0203C9008A6C56 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 9F8FC86329ED90CD00548589 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -200,6 +230,7 @@
 			files = (
 				9F8FC86A29ED90CD00548589 /* ViewController.swift in Sources */,
 				5724EF1629F360440023C76B /* PokemonModel.swift in Sources */,
+				57590F712A0203E7008A6C56 /* NetworkingProvider.swift in Sources */,
 				57B2BDDF29F458D000FA7766 /* InformationViewController.swift in Sources */,
 				57590C5D29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift in Sources */,
 				5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */,
@@ -208,6 +239,7 @@
 				9F8FC87A29ED91E100548589 /* ViewControllerFavorite.swift in Sources */,
 				57590C5C29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift in Sources */,
 				9F8FC86829ED90CD00548589 /* SceneDelegate.swift in Sources */,
+				571A6E322A021CE20041ACEF /* PokemonData.swift in Sources */,
 				572E80AE29F76E1D00E64C8D /* CompareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +456,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57590F6D2A0203C9008A6C56 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57590F6E2A0203C9008A6C56 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57590F6D2A0203C9008A6C56 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */ = {

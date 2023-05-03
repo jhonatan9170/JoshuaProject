@@ -28,5 +28,4 @@ class Pokemon {
         self.height = height
     }
     
-    
 }

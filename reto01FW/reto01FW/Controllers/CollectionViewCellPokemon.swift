@@ -9,13 +9,8 @@ import UIKit
 import CoreData
 
 class CollectionViewCellPokemon: UICollectionViewCell {
-
-    var imgUrlToFavorite:String?
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+   
     @IBOutlet weak var viewCellPokemon: UIView!
-    
     @IBOutlet weak var imgPokemon: UIImageView!
     
     @IBOutlet weak var lblNamePokemon: UILabel!
@@ -28,12 +23,22 @@ class CollectionViewCellPokemon: UICollectionViewCell {
     
     
     @IBOutlet weak var lblTypePokemon: UILabel!
+    
+    var imgUrlToFavorite:String?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     override func awakeFromNib() {
         super.awakeFromNib()
-
-      
+        setRoundedBorder()
     }
-
+    
+    func setRoundedBorder() {
+        layer.cornerRadius = 10
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.gray.cgColor
+    }
+    
+    
     @IBAction func favoriteAction(_ sender: UIButton) {
         let entidad = NSEntityDescription.entity(forEntityName: "PokemonsFavorite", in: context)!
             let objeto = NSManagedObject(entity: entidad, insertInto: context)

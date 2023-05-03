@@ -9,24 +9,6 @@ import UIKit
 
 class InformationViewController: UIViewController {
     
-     
-    
-    var namePokemon:String?
-    var typePokemon:String?
-    var imgPokemon:String?
-    var hpPokemon:Int?
-    var attackPokemon:Int?
-    var defensePokemon:Int?
-    var weightPokemon:Int?
-    var heightPokemon:Int?
-    
-    //outlets
-    
-    let stackWidth = UIScreen.main.bounds.width / 2
-    
-    
-   
-    
     @IBOutlet weak var oneStack: UIStackView!
     @IBOutlet weak var twoStack: UIStackView!
     
@@ -44,48 +26,39 @@ class InformationViewController: UIViewController {
     
     @IBOutlet weak var informatioImageView: UIImageView!
     
+    var pokemon: Pokemon?
+    let stackWidth = UIScreen.main.bounds.width / 2
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        namePokemonLbl.text = namePokemon
-        typePokemonLbl.text = typePokemon
-        
-        if let attack = attackPokemon {
+        print(pokemon ?? "","aqui")
+        namePokemonLbl.text = pokemon?.name
+        typePokemonLbl.text = pokemon?.type
+        if let attack = pokemon?.attack{
             attackPokemonLbl.text = String(describing: attack)
-        } else {
-            attackPokemonLbl.text = "N/A"
         }
         
-        if let hp = hpPokemon {
+        if let hp = pokemon?.hp {
             hpPokemonLbl.text =
             String(describing: hp)
-            
-        }else{
-            hpPokemonLbl.text = "N/A"
         }
         
-        if let defense = defensePokemon{
+        if let defense = pokemon?.defense{
             defensePokemonLbl.text =
             String(describing: defense)
-        }else{
-            defensePokemonLbl.text = "N/A"
         }
         
-        if let weight = weightPokemon{
+        if let weight = pokemon?.weight{
             weightPokemonLbl.text =
             String(describing: weight)
-        }else{
-            weightPokemonLbl.text = "N/A"
         }
         
-        if let height = heightPokemon{
+        if let height = pokemon?.height{
             heightPokemonLbl.text =
             String(describing: height)
-        }else{
-            heightPokemonLbl.text = "N/A"
         }
         
-        if let url = URL(string : imgPokemon ?? ""){
+        if let url = URL(string : pokemon?.img ?? ""){
             if let imgData = try? Data(contentsOf: url){
                 let image = UIImage(data: imgData)
                 informatioImageView.image = image

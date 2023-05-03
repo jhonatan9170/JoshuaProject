@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var pokemons:[Pokemon] = []
     var filteredPokemon = [Pokemon]()
     var pokemonArray = [Pokemon]()
+    var pokemonsToCompare = [Pokemon]()
     
     private let cellWidth = UIScreen.main.bounds.width / 2
     
@@ -48,8 +49,6 @@ class ViewController: UIViewController {
         pokemons = [pokemon1,pokemon2,pokemon3,pokemon4,pokemon5,pokemon6,pokemon7]
         
         // collectionView Pokedex
-        collectioViewPokedex.backgroundColor = .red
-        
         collectioViewPokedex.dataSource = self
         collectioViewPokedex.delegate = self
         collectioViewPokedex.register(UINib(nibName: "CollectionViewCellPokemon", bundle: nil), forCellWithReuseIdentifier: "cellPokemon")
@@ -62,7 +61,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func compareStateAction(_ sender: Any) {
-        
+        NetworkingProvider.shared.getPokemon(id: 25)
        comparePokemonState = !comparePokemonState
         if comparePokemonState == true {
             compareStateBtn.setImage(UIImage(systemName: "seal.fill"),for: .normal)
@@ -71,6 +70,9 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func compareBtnAction(_ sender: Any) {
+        performSegue(withIdentifier: "compareSegue", sender: pokemonsToCompare)
+    }
 }
 
 extension ViewController: UICollectionViewDataSource{
@@ -85,8 +87,8 @@ extension ViewController: UICollectionViewDataSource{
         
         let cell = collectioViewPokedex.dequeueReusableCell(withReuseIdentifier: "cellPokemon", for: indexPath) as? CollectionViewCellPokemon
         
-        
         let pokemon = pokemons[indexPath.row]
+        
         cell!.lblNamePokemon.text = pokemon.name
         cell!.lblTypePokemon.text = pokemon.type
         cell!.imgUrlToFavorite = pokemon.img
@@ -106,28 +108,18 @@ extension ViewController: UICollectionViewDataSource{
         if segue.identifier == "informationSegue"{
             if let destinationVC = segue.destination as? InformationViewController{
                 if let pokemon = sender as? Pokemon {
-                    destinationVC.namePokemon = pokemon.name
-                    
-                    destinationVC.typePokemon = pokemon.type
-                    
-                    destinationVC.hpPokemon = pokemon.hp
-                    
-                    destinationVC.attackPokemon =
-                    pokemon.attack
-                    
-                    destinationVC.defensePokemon =
-                    pokemon.defense
-                    
-                    destinationVC.weightPokemon = pokemon.weight
-                    
-                    destinationVC.heightPokemon = pokemon.height
-                    
-                    destinationVC.imgPokemon = pokemon.img
+                    destinationVC.pokemon = pokemon
                 }
             }
+        }else{
+            guard let destinoVC = segue.destination as? CompareViewController else {
+                return
+            }
+            destinoVC.pokemons = pokemons
         }
             
     }
+    
 }
 
 
@@ -137,11 +129,48 @@ extension ViewController: UICollectionViewDelegate{
         let pokemon = pokemons[indexPath.row]
         
         if comparePokemonState == true {
-            let cell = collectioViewPokedex.dequeueReusableCell(withReuseIdentifier: "cellPokemon", for: indexPath) as! CollectionViewCellPokemon
-            cell.viewCellPokemon.backgroundColor = UIColor.gray
-            print("true")
+            
+            let pokemonStateToCompare = validateStateToCompare()
+            let validateFavoriteState = validatePokemonsSelected(pokemonName: pokemon.name)
+            let cell = collectioViewPokedex.cellForItem(at: indexPath) as! CollectionViewCellPokemon
+                
+            
+            if pokemonStateToCompare == true {
+                if validateFavoriteState == true{
+                    pokemonsToCompare.removeAll() {$0.name == pokemon.name}
+                    cell.contentView.backgroundColor = .white
+                    print("fondo blanco")
+                }else{
+                    cell.contentView.backgroundColor = .green
+                    pokemonsToCompare.append(pokemon)
+                }
+            }else{
+                print("no se puede agregar mas pokemones para comparar")
+                if validateFavoriteState == true{
+                    pokemonsToCompare.removeAll() {$0.name == pokemon.name}
+                    cell.contentView.backgroundColor = .red
+                }else{
+                    print("no se pueden seleccionar mas")
+                }
+            }
         }else{
             performSegue(withIdentifier: "informationSegue", sender: pokemon)
+        }
+    }
+    
+    func validateStateToCompare()-> Bool{
+        if pokemonsToCompare.count <= 1 {
+            return true
+        }else {
+            return false
+        }
+    }
+    
+    func validatePokemonsSelected(pokemonName: String)->Bool{
+        if let pokemonFind = pokemonsToCompare.first(where: {$0.name == pokemonName }){
+            return true
+        }else {
+            return false
         }
     }
 }
@@ -151,11 +180,15 @@ extension ViewController: UICollectionViewDelegateFlowLayout{
         
         return CGSize(width: cellWidth, height: cellWidth / 2)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+           return 10 // Establece el espacio vertical entre celdas en 10 puntos
+       }
+
 }
 
 extension ViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         
         if let searchText = searchBar.text, !searchText.isEmpty {
             filteredPokemon = pokemonArray.filter { $0.name.lowercased().contains(searchText.lowercased()) }
