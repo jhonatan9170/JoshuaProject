@@ -17,6 +17,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var favoriteBtn: UIButton!
     @IBOutlet weak var lblTypePokemon: UILabel!
     
+    var state: Bool?
     var namePokemon: String?
     var imgUrlToFavorite:String?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext

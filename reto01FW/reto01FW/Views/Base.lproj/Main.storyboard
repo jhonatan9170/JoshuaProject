@@ -40,7 +40,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
                                     <action selector="compareBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="guk-hM-OSA"/>
-                                    <segue destination="NIy-XJ-OH3" kind="show" identifier="compareSegue" id="frN-OI-aUo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPN-AU-AEV">
@@ -77,6 +76,7 @@
                         <outlet property="compareStateBtn" destination="VPN-AU-AEV" id="O2e-2B-frh"/>
                         <outlet property="pokemonSearchBar" destination="ZcR-KA-ph1" id="XdD-n8-fnK"/>
                         <segue destination="Rfd-vK-58w" kind="show" identifier="informationSegue" id="Auh-c5-ajL"/>
+                        <segue destination="NIy-XJ-OH3" kind="show" identifier="compareSegue" id="Yn1-Ph-gd6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

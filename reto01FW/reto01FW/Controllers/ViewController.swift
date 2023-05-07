@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     var comparePokemonState = false
     var pokemons:[PokemonResponse] = []
     var filteredPokemon = [PokemonResponse]()
-    var pokemonArray = [PokemonResponse]()
     var pokemonsToCompare = [PokemonResponse]()
     
     private let cellWidth = UIScreen.main.bounds.width / 2
@@ -70,9 +69,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func compareBtnAction(_ sender: Any) {
-//        performSegue(withIdentifier: "compareSegue", sender: pokemonsToCompare)
+        performSegue(withIdentifier: "compareSegue", sender: pokemonsToCompare)
             
-  }
+    }
 }
 
 // MARK: - UICollectionView
@@ -111,7 +110,7 @@ extension ViewController: UICollectionViewDataSource{
             guard let destinoVC = segue.destination as? CompareViewController else {
                 return
             }
-            destinoVC.pokemons = pokemons
+            destinoVC.pokemons = pokemonsToCompare
         }
             
     }
@@ -127,30 +126,26 @@ extension ViewController: UICollectionViewDelegate{
         if comparePokemonState == true {
             
             let pokemonStateToCompare = validateStateToCompare()
-            let validateFavoriteState = validatePokemonsSelected(pokemonName: pokemon.name)
+            let validatePokemonToCompare = validatePokemonsSelected(pokemonName: pokemon.name)
             let cell = collectioViewPokedex.cellForItem(at: indexPath) as! PokemonCollectionViewCell
-                
             
-            if pokemonStateToCompare == true {
-                if validateFavoriteState == true{
-                    pokemonsToCompare.removeAll() {$0.name == pokemon.name}
-                    cell.contentView.backgroundColor = .white
-                }else{
-                    cell.contentView.backgroundColor = .green
-                    pokemonsToCompare.append(pokemon)
-                }
+            var stateCell = cell.state
+            
+            if stateCell == true {
+                cell.state = false
+                cell.contentView.backgroundColor = .white
+                pokemonsToCompare.removeAll() {$0.name == pokemon.name}
             }else{
-                print("no se puede agregar mas pokemones para comparar")
-                if validateFavoriteState == true{
-                    pokemonsToCompare.removeAll() {$0.name == pokemon.name}
-                    cell.contentView.backgroundColor = .red
-                }else{
-                    print("no se pueden seleccionar mas")
-                }
+                cell.state = true
+                cell.contentView.backgroundColor = .blue
+                pokemonsToCompare.append(pokemon)
             }
+                
         }else{
             performSegue(withIdentifier: "informationSegue", sender: pokemon)
         }
+        
+        print(pokemonsToCompare.count)
     }
     
     func validateStateToCompare()-> Bool{

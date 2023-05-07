@@ -26,6 +26,11 @@ class CompareViewController: UIViewController {
         super.viewDidLoad()
 
         pokemon1Lbl.text = pokemons[0].name
+        pokemon1TypeLbl.text = pokemons[0].types[0].type.name
+        
+        
+        
         pokemon2NameLbl.text = pokemons[1].name
+        pokemon2TypeLbl.text = pokemons[1].types[0].type.name
     }
 }

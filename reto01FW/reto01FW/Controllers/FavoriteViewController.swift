@@ -64,8 +64,6 @@ extension FavoriteViewController:UITableViewDataSource{
             cell.imageView?.image = image
         }
         
-        
-     
         return cell
     }
     
