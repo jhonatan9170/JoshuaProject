@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13C5E86891B7488F97CE7D40 /* Pods_reto01FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8323898EA6E9968A2FAC879F /* Pods_reto01FW.framework */; };
 		571A6E322A021CE20041ACEF /* PokemonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571A6E312A021CE20041ACEF /* PokemonData.swift */; };
 		5724EF1629F360440023C76B /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724EF1529F360440023C76B /* PokemonModel.swift */; };
 		572E80AE29F76E1D00E64C8D /* CompareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E80AD29F76E1D00E64C8D /* CompareViewController.swift */; };
 		5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */; };
 		57590C5C29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57590C5A29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift */; };
 		57590C5D29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57590C5B29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift */; };
-		57590F6F2A0203C9008A6C56 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 57590F6E2A0203C9008A6C56 /* Alamofire */; };
 		57590F712A0203E7008A6C56 /* NetworkingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57590F702A0203E7008A6C56 /* NetworkingProvider.swift */; };
 		57B2BDDF29F458D000FA7766 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B2BDDE29F458D000FA7766 /* InformationViewController.swift */; };
 		9F8FC86629ED90CD00548589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC86529ED90CD00548589 /* AppDelegate.swift */; };
@@ -22,12 +22,13 @@
 		9F8FC86D29ED90CD00548589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8FC86B29ED90CD00548589 /* Main.storyboard */; };
 		9F8FC86F29ED90CF00548589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F8FC86E29ED90CF00548589 /* Assets.xcassets */; };
 		9F8FC87229ED90CF00548589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8FC87029ED90CF00548589 /* LaunchScreen.storyboard */; };
-		9F8FC87A29ED91E100548589 /* ViewControllerFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC87929ED91E100548589 /* ViewControllerFavorite.swift */; };
-		9F8FC87D29ED9A1B00548589 /* CollectionViewCellPokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC87B29ED9A1B00548589 /* CollectionViewCellPokemon.swift */; };
+		9F8FC87A29ED91E100548589 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC87929ED91E100548589 /* FavoriteViewController.swift */; };
+		9F8FC87D29ED9A1B00548589 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FC87B29ED9A1B00548589 /* PokemonCollectionViewCell.swift */; };
 		9F8FC87E29ED9A1B00548589 /* CollectionViewCellPokemon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F8FC87C29ED9A1B00548589 /* CollectionViewCellPokemon.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07CC2DBDF43BBE1142EC638B /* Pods-reto01FW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reto01FW.release.xcconfig"; path = "Target Support Files/Pods-reto01FW/Pods-reto01FW.release.xcconfig"; sourceTree = "<group>"; };
 		571A6E312A021CE20041ACEF /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
 		5724EF1529F360440023C76B /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 		572E80AD29F76E1D00E64C8D /* CompareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +37,7 @@
 		57590C5B29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PokemonsFavorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		57590F702A0203E7008A6C56 /* NetworkingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProvider.swift; sourceTree = "<group>"; };
 		57B2BDDE29F458D000FA7766 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		8323898EA6E9968A2FAC879F /* Pods_reto01FW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reto01FW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F8FC86229ED90CD00548589 /* reto01FW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reto01FW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F8FC86529ED90CD00548589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F8FC86729ED90CD00548589 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,9 +46,10 @@
 		9F8FC86E29ED90CF00548589 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F8FC87129ED90CF00548589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F8FC87329ED90CF00548589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F8FC87929ED91E100548589 /* ViewControllerFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFavorite.swift; sourceTree = "<group>"; };
-		9F8FC87B29ED9A1B00548589 /* CollectionViewCellPokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellPokemon.swift; sourceTree = "<group>"; };
+		9F8FC87929ED91E100548589 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		9F8FC87B29ED9A1B00548589 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
 		9F8FC87C29ED9A1B00548589 /* CollectionViewCellPokemon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCellPokemon.xib; sourceTree = "<group>"; };
+		C659D9FB3C897929A562E5EE /* Pods-reto01FW.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reto01FW.debug.xcconfig"; path = "Target Support Files/Pods-reto01FW/Pods-reto01FW.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57590F6F2A0203C9008A6C56 /* Alamofire in Frameworks */,
+				13C5E86891B7488F97CE7D40 /* Pods_reto01FW.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,8 @@
 		5724EF1129F35B140023C76B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				57590C5A29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift */,
+				57590C5B29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift */,
 				5724EF1529F360440023C76B /* PokemonModel.swift */,
 				5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */,
 			);
@@ -91,9 +96,9 @@
 			isa = PBXGroup;
 			children = (
 				572E80AD29F76E1D00E64C8D /* CompareViewController.swift */,
-				9F8FC87B29ED9A1B00548589 /* CollectionViewCellPokemon.swift */,
+				9F8FC87B29ED9A1B00548589 /* PokemonCollectionViewCell.swift */,
 				9F8FC86929ED90CD00548589 /* ViewController.swift */,
-				9F8FC87929ED91E100548589 /* ViewControllerFavorite.swift */,
+				9F8FC87929ED91E100548589 /* FavoriteViewController.swift */,
 				57B2BDDE29F458D000FA7766 /* InformationViewController.swift */,
 			);
 			path = Controllers;
@@ -108,20 +113,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		5724EF1429F35F000023C76B /* Utilities */ = {
+		841C0E02125B6325E6CACC15 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				C659D9FB3C897929A562E5EE /* Pods-reto01FW.debug.xcconfig */,
+				07CC2DBDF43BBE1142EC638B /* Pods-reto01FW.release.xcconfig */,
 			);
-			path = Utilities;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		9F8FC85929ED90CD00548589 = {
 			isa = PBXGroup;
 			children = (
-				57590C5A29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift */,
-				57590C5B29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift */,
 				9F8FC86429ED90CD00548589 /* reto01FW */,
 				9F8FC86329ED90CD00548589 /* Products */,
+				841C0E02125B6325E6CACC15 /* Pods */,
+				B6A275918A189278B7E52717 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				571A6E2D2A0216FF0041ACEF /* Network */,
-				5724EF1429F35F000023C76B /* Utilities */,
 				5724EF1329F35B300023C76B /* Views */,
 				5724EF1229F35B230023C76B /* Controllers */,
 				5724EF1129F35B140023C76B /* Models */,
@@ -150,6 +156,14 @@
 			path = reto01FW;
 			sourceTree = "<group>";
 		};
+		B6A275918A189278B7E52717 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8323898EA6E9968A2FAC879F /* Pods_reto01FW.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,18 +171,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F8FC87629ED90CF00548589 /* Build configuration list for PBXNativeTarget "reto01FW" */;
 			buildPhases = (
+				E1158B328F9401D3DAF3F3E4 /* [CP] Check Pods Manifest.lock */,
 				9F8FC85E29ED90CD00548589 /* Sources */,
 				9F8FC85F29ED90CD00548589 /* Frameworks */,
 				9F8FC86029ED90CD00548589 /* Resources */,
+				39AD0D18A58094893DAA2CCC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = reto01FW;
-			packageProductDependencies = (
-				57590F6E2A0203C9008A6C56 /* Alamofire */,
-			);
 			productName = reto01FW;
 			productReference = 9F8FC86229ED90CD00548589 /* reto01FW.app */;
 			productType = "com.apple.product-type.application";
@@ -197,9 +210,6 @@
 				Base,
 			);
 			mainGroup = 9F8FC85929ED90CD00548589;
-			packageReferences = (
-				57590F6D2A0203C9008A6C56 /* XCRemoteSwiftPackageReference "Alamofire" */,
-			);
 			productRefGroup = 9F8FC86329ED90CD00548589 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -223,6 +233,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		39AD0D18A58094893DAA2CCC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-reto01FW/Pods-reto01FW-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-reto01FW/Pods-reto01FW-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-reto01FW/Pods-reto01FW-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1158B328F9401D3DAF3F3E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-reto01FW-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9F8FC85E29ED90CD00548589 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -234,9 +286,9 @@
 				57B2BDDF29F458D000FA7766 /* InformationViewController.swift in Sources */,
 				57590C5D29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift in Sources */,
 				5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */,
-				9F8FC87D29ED9A1B00548589 /* CollectionViewCellPokemon.swift in Sources */,
+				9F8FC87D29ED9A1B00548589 /* PokemonCollectionViewCell.swift in Sources */,
 				9F8FC86629ED90CD00548589 /* AppDelegate.swift in Sources */,
-				9F8FC87A29ED91E100548589 /* ViewControllerFavorite.swift in Sources */,
+				9F8FC87A29ED91E100548589 /* FavoriteViewController.swift in Sources */,
 				57590C5C29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift in Sources */,
 				9F8FC86829ED90CD00548589 /* SceneDelegate.swift in Sources */,
 				571A6E322A021CE20041ACEF /* PokemonData.swift in Sources */,
@@ -382,6 +434,7 @@
 		};
 		9F8FC87729ED90CF00548589 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C659D9FB3C897929A562E5EE /* Pods-reto01FW.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -409,6 +462,7 @@
 		};
 		9F8FC87829ED90CF00548589 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07CC2DBDF43BBE1142EC638B /* Pods-reto01FW.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,25 +510,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		57590F6D2A0203C9008A6C56 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		57590F6E2A0203C9008A6C56 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 57590F6D2A0203C9008A6C56 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */ = {

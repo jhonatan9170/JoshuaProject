@@ -11,39 +11,33 @@ class InformationViewController: UIViewController {
     
     @IBOutlet weak var oneStack: UIStackView!
     @IBOutlet weak var twoStack: UIStackView!
-    
     @IBOutlet weak var namePokemonLbl: UILabel!
     @IBOutlet weak var typePokemonLbl: UILabel!
-    
     @IBOutlet weak var hpPokemonLbl: UILabel!
     @IBOutlet weak var attackPokemonLbl: UILabel!
-    
     @IBOutlet weak var defensePokemonLbl: UILabel!
-    
     @IBOutlet weak var weightPokemonLbl: UILabel!
-    
     @IBOutlet weak var heightPokemonLbl: UILabel!
-    
     @IBOutlet weak var informatioImageView: UIImageView!
     
-    var pokemon: Pokemon?
+    var pokemon: PokemonResponse?
     let stackWidth = UIScreen.main.bounds.width / 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(pokemon ?? "","aqui")
         namePokemonLbl.text = pokemon?.name
-        typePokemonLbl.text = pokemon?.type
-        if let attack = pokemon?.attack{
+        typePokemonLbl.text = pokemon?.types[0].type.name
+        if let attack = pokemon?.stats[1].baseStat{
             attackPokemonLbl.text = String(describing: attack)
         }
         
-        if let hp = pokemon?.hp {
+        if let hp = pokemon?.stats[0].baseStat {
             hpPokemonLbl.text =
             String(describing: hp)
         }
         
-        if let defense = pokemon?.defense{
+        if let defense = pokemon?.stats[2].baseStat{
             defensePokemonLbl.text =
             String(describing: defense)
         }
@@ -58,7 +52,7 @@ class InformationViewController: UIViewController {
             String(describing: height)
         }
         
-        if let url = URL(string : pokemon?.img ?? ""){
+        if let url = URL(string : pokemon?.sprites.other?.officialArtwork.frontDefault ?? ""){
             if let imgData = try? Data(contentsOf: url){
                 let image = UIImage(data: imgData)
                 informatioImageView.image = image
@@ -71,15 +65,4 @@ class InformationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -8,22 +8,16 @@
 import UIKit
 import CoreData
 
-class CollectionViewCellPokemon: UICollectionViewCell {
+class PokemonCollectionViewCell: UICollectionViewCell {
    
     @IBOutlet weak var viewCellPokemon: UIView!
     @IBOutlet weak var imgPokemon: UIImageView!
-    
     @IBOutlet weak var lblNamePokemon: UILabel!
-    
     @IBOutlet weak var selectCellPokemon: UIButton!
-    
-    
     @IBOutlet weak var favoriteBtn: UIButton!
-    var namePokemon: String?
-    
-    
     @IBOutlet weak var lblTypePokemon: UILabel!
     
+    var namePokemon: String?
     var imgUrlToFavorite:String?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 

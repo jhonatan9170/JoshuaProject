@@ -9,18 +9,34 @@ import Foundation
 import Alamofire
 final class NetworkingProvider{
     static let shared = NetworkingProvider()
-    private let baseUrl = "https://pokeapi.co/api/v2/pokemon/"
+    private let baseUrl = "https://pokeapi.co/api/v2"
     
-    func getPokemon(id: Int){
-        let url = "\(baseUrl)\(id)"
-        AF.request(url, method: .get).validate(statusCode: 200...299).responseDecodable (of: PokemonResponse.self) {response in
-            
-            if let pokemonName = response.value?.name{
-                print(pokemonName)
-            }else{
-                print(response.error?.responseCode ?? "No error")
+    private init() {}
+
+    func fetchPokemonDetails(id: Int) async throws -> PokemonResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request("https://pokeapi.co/api/v2/pokemon/\(id)").validate().responseDecodable(of: PokemonResponse.self) { response in
+                switch response.result {
+                case .success(let pokemonResponse):
+                    continuation.resume(returning: pokemonResponse)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
             }
         }
+    }
+        
+func fetchPokemonList(completion: @escaping (Result<[PokemonResponse], Error>) -> Void) {
+            let offset = 0
+            let limit = 20
+            AF.request("https://pokeapi.co/api/v2/pokemon?offset=\(offset)&limit=\(limit)").responseDecodable(of: PokemonList.self) { response in
+                switch response.result {
+                case .success(let pokemonList):
+                    completion(.success(pokemonList.results))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
     }
     
 }

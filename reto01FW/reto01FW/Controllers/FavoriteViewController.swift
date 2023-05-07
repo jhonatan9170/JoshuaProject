@@ -8,13 +8,13 @@
 import UIKit
 import CoreData
 
-class ViewControllerFavorite: UIViewController {
+class FavoriteViewController: UIViewController {
+    
+    @IBOutlet weak var favoritesTableView: UITableView!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     private var myPokemonsFavorite:[PokemonsFavorite]?
-    
-    @IBOutlet weak var favoritesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class ViewControllerFavorite: UIViewController {
     
 }
 
-extension ViewControllerFavorite:UITableViewDataSource{
+extension FavoriteViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         myPokemonsFavorite?.count ?? 0
     }
@@ -72,6 +72,6 @@ extension ViewControllerFavorite:UITableViewDataSource{
     
 }
 
-extension ViewControllerFavorite: UITableViewDelegate{
+extension FavoriteViewController: UITableViewDelegate{
     
 }
