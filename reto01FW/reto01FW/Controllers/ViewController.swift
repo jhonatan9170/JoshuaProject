@@ -7,14 +7,19 @@
 
 import UIKit
 import CoreData
-
+import Toast_Swift
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var btnCompare: UIButton!
+    @IBOutlet weak var collectioViewPokedex: UICollectionView!
+    @IBOutlet weak var compareStateBtn: UIButton!
+    @IBOutlet weak var pokemonSearchBar: UISearchBar!
     
     var numPokemonSelected = 0
     var comparePokemonState = false
-    var pokemons:[Pokemon] = []
-    var filteredPokemon = [Pokemon]()
-    var pokemonArray = [Pokemon]()
+    var pokemons:[PokemonResponse] = []
+    var filteredPokemon = [PokemonResponse]()
+    var pokemonsToCompare = [PokemonResponse]()
     
     private let cellWidth = UIScreen.main.bounds.width / 2
     
@@ -22,47 +27,37 @@ class ViewController: UIViewController {
 
     private var myPokemonsFavorite:[PokemonsFavorite]?
     
-    // oulets
-    @IBOutlet weak var btnCompare: UIButton!
-    @IBOutlet weak var collectioViewPokedex: UICollectionView!
     
-    @IBOutlet weak var compareStateBtn: UIButton!
-    @IBOutlet weak var pokemonSearchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let pokemon1 = Pokemon(name: "pikachu",type: "electric",img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png", hp: 35, attack: 55, defense: 40, weight: 60, height: 4)
         
-        let pokemon2 = Pokemon(name: "charmander", type: "fire", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png", hp: 39, attack: 52, defense: 43, weight: 85, height: 6)
-        
-        let pokemon3 = Pokemon(name: "squirtle", type: "water", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png", hp: 44, attack: 48, defense: 65, weight: 90, height: 5)
-        
-        let pokemon4 = Pokemon(name: "bulbasaur", type: "poison", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png", hp: 45, attack: 49, defense: 49, weight: 69, height: 7)
-        
-        let pokemon5 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
-        let pokemon6 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
-        let pokemon7 = Pokemon(name: "eevee", type: "normal", img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png", hp: 55, attack: 55, defense: 50, weight: 65, height: 3)
-        
-        pokemonArray = [pokemon1,pokemon2,pokemon3,pokemon4,pokemon5,pokemon6,pokemon7]
-        
-        pokemons = [pokemon1,pokemon2,pokemon3,pokemon4,pokemon5,pokemon6,pokemon7]
-        
-        // collectionView Pokedex
-        collectioViewPokedex.backgroundColor = .red
-        
-        collectioViewPokedex.dataSource = self
-        collectioViewPokedex.delegate = self
-        collectioViewPokedex.register(UINib(nibName: "CollectionViewCellPokemon", bundle: nil), forCellWithReuseIdentifier: "cellPokemon")
-        
-        // btnCompare
-        btnCompare.setTitle("Compare", for: .normal)
-        
-        // pokemonSearchBar
-        pokemonSearchBar.delegate = self
+        async {
+            await getListPokemon()
+            collectioViewPokedex.dataSource = self
+            collectioViewPokedex.delegate = self
+            collectioViewPokedex.register(UINib(nibName: "CollectionViewCellPokemon", bundle: nil), forCellWithReuseIdentifier: "cellPokemon")
+            
+            btnCompare.setTitle("Compare", for: .normal)
+            
+            pokemonSearchBar.delegate = self
+        }
+    }
+    
+    func getListPokemon() async {
+        for id in 1...20 {
+                do {
+                    let pokemon = try await NetworkingProvider.shared.fetchPokemonDetails(id: id)
+                    print(pokemon.name)
+                    self.pokemons.append(pokemon)
+                } catch {
+                    print("Error")
+                    print(error.localizedDescription)
+                }
+            }
     }
 
     @IBAction func compareStateAction(_ sender: Any) {
-        
+
        comparePokemonState = !comparePokemonState
         if comparePokemonState == true {
             compareStateBtn.setImage(UIImage(systemName: "seal.fill"),for: .normal)
@@ -71,11 +66,13 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func compareBtnAction(_ sender: Any) {
+        performSegue(withIdentifier: "compareSegue", sender: pokemonsToCompare)
+    }
 }
 
+// MARK: - UICollectionViewDataSource
 extension ViewController: UICollectionViewDataSource{
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pokemons.count
@@ -83,20 +80,24 @@ extension ViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectioViewPokedex.dequeueReusableCell(withReuseIdentifier: "cellPokemon", for: indexPath) as? CollectionViewCellPokemon
-        
+        let cell = collectioViewPokedex.dequeueReusableCell(withReuseIdentifier: "cellPokemon", for: indexPath) as? PokemonCollectionViewCell
         
         let pokemon = pokemons[indexPath.row]
+        
+        if verifyPokemon(namePokemon: pokemon.name) == true {
+            cell?.favoriteBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            cell?.favoriteBtn.tintColor = UIColor.red
+            cell?.stateFavorite = true
+        }
+        
         cell!.lblNamePokemon.text = pokemon.name
-        cell!.lblTypePokemon.text = pokemon.type
-        cell!.imgUrlToFavorite = pokemon.img
-        let urld = URL(string: pokemon.img)!
+        cell!.lblTypePokemon.text = pokemon.types[0].type.name
+        cell!.imgUrlToFavorite = pokemon.sprites.other?.officialArtwork.frontDefault
+        let urld = URL(string: pokemon.sprites.other?.officialArtwork.frontDefault ?? "")!
         
         if let data = try? Data(contentsOf:urld) {
-                // Create Image and Update Image View
             cell!.imgPokemon.image = UIImage(data: data)
             }
-        
         
         return cell!
     }
@@ -105,44 +106,77 @@ extension ViewController: UICollectionViewDataSource{
         
         if segue.identifier == "informationSegue"{
             if let destinationVC = segue.destination as? InformationViewController{
-                if let pokemon = sender as? Pokemon {
-                    destinationVC.namePokemon = pokemon.name
-                    
-                    destinationVC.typePokemon = pokemon.type
-                    
-                    destinationVC.hpPokemon = pokemon.hp
-                    
-                    destinationVC.attackPokemon =
-                    pokemon.attack
-                    
-                    destinationVC.defensePokemon =
-                    pokemon.defense
-                    
-                    destinationVC.weightPokemon = pokemon.weight
-                    
-                    destinationVC.heightPokemon = pokemon.height
-                    
-                    destinationVC.imgPokemon = pokemon.img
+                if let pokemon = sender as? PokemonResponse {
+                    destinationVC.pokemon = pokemon
                 }
             }
+        }else{
+            guard let destinoVC = segue.destination as? CompareViewController else {
+                return
+            }
+            destinoVC.pokemons = pokemonsToCompare
         }
             
     }
+    
+    func verifyPokemon(namePokemon: String) ->Bool{
+        var verifyState: Bool?
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<PokemonsFavorite>(entityName: "PokemonsFavorite")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", namePokemon)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let pokemon = results.first {
+                verifyState = true
+            } else {
+                verifyState = false
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error)")
+        }
+        return verifyState ?? false
+    }
+    
 }
 
-
+// MARK: - UICollectionViewDelegate
 extension ViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pokemon = pokemons[indexPath.row]
         
         if comparePokemonState == true {
-            let cell = collectioViewPokedex.dequeueReusableCell(withReuseIdentifier: "cellPokemon", for: indexPath) as! CollectionViewCellPokemon
-            cell.viewCellPokemon.backgroundColor = UIColor.gray
-            print("true")
+            
+            let cell = collectioViewPokedex.cellForItem(at: indexPath) as! PokemonCollectionViewCell
+            
+            let countPokemonsToCompare = pokemonsToCompare.count
+            let stateCell = cell.state
+            if countPokemonsToCompare >= 2{
+                if stateCell == true {
+                    cell.state = false
+                    cell.contentView.backgroundColor = .white
+                    pokemonsToCompare.removeAll() {$0.name == pokemon.name}
+                }else{
+                    view.makeToast("Solo se puede seleccionar 2 pokemones para comparar")
+
+                }
+            }else {
+                if stateCell == true {
+                    cell.state = false
+                    cell.contentView.backgroundColor = .white
+                    pokemonsToCompare.removeAll() {$0.name == pokemon.name}
+                }else{
+                    cell.state = true
+                    cell.contentView.backgroundColor = .blue
+                    pokemonsToCompare.append(pokemon)
+                }
+            }
+                
         }else{
             performSegue(withIdentifier: "informationSegue", sender: pokemon)
         }
+        
     }
 }
 
@@ -151,21 +185,27 @@ extension ViewController: UICollectionViewDelegateFlowLayout{
         
         return CGSize(width: cellWidth, height: cellWidth / 2)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+           return 10
+       }
+
 }
 
 extension ViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        
         if let searchText = searchBar.text, !searchText.isEmpty {
-            filteredPokemon = pokemonArray.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+            filteredPokemon = pokemons.filter { $0.name.lowercased().contains(searchText.lowercased()) }
                 pokemons = filteredPokemon
                 } else {
-                    pokemons = pokemonArray
+                    async{
+                        await getListPokemon()
+                    }
                 }
+        view.endEditing(true)
         collectioViewPokedex.reloadData()
-        print("hola")
-        
+
     }
 }
 

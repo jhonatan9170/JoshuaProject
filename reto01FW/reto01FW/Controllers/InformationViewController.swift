@@ -9,83 +9,49 @@ import UIKit
 
 class InformationViewController: UIViewController {
     
-     
-    
-    var namePokemon:String?
-    var typePokemon:String?
-    var imgPokemon:String?
-    var hpPokemon:Int?
-    var attackPokemon:Int?
-    var defensePokemon:Int?
-    var weightPokemon:Int?
-    var heightPokemon:Int?
-    
-    //outlets
-    
-    let stackWidth = UIScreen.main.bounds.width / 2
-    
-    
-   
-    
     @IBOutlet weak var oneStack: UIStackView!
     @IBOutlet weak var twoStack: UIStackView!
-    
     @IBOutlet weak var namePokemonLbl: UILabel!
     @IBOutlet weak var typePokemonLbl: UILabel!
-    
     @IBOutlet weak var hpPokemonLbl: UILabel!
     @IBOutlet weak var attackPokemonLbl: UILabel!
-    
     @IBOutlet weak var defensePokemonLbl: UILabel!
-    
     @IBOutlet weak var weightPokemonLbl: UILabel!
-    
     @IBOutlet weak var heightPokemonLbl: UILabel!
-    
     @IBOutlet weak var informatioImageView: UIImageView!
+    
+    var pokemon: PokemonResponse?
+    let stackWidth = UIScreen.main.bounds.width / 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        namePokemonLbl.text = namePokemon
-        typePokemonLbl.text = typePokemon
-        
-        if let attack = attackPokemon {
+        namePokemonLbl.text = pokemon?.name
+        typePokemonLbl.text = pokemon?.types[0].type.name
+        if let attack = pokemon?.stats[1].baseStat{
             attackPokemonLbl.text = String(describing: attack)
-        } else {
-            attackPokemonLbl.text = "N/A"
         }
         
-        if let hp = hpPokemon {
+        if let hp = pokemon?.stats[0].baseStat {
             hpPokemonLbl.text =
             String(describing: hp)
-            
-        }else{
-            hpPokemonLbl.text = "N/A"
         }
         
-        if let defense = defensePokemon{
+        if let defense = pokemon?.stats[2].baseStat{
             defensePokemonLbl.text =
             String(describing: defense)
-        }else{
-            defensePokemonLbl.text = "N/A"
         }
         
-        if let weight = weightPokemon{
+        if let weight = pokemon?.weight{
             weightPokemonLbl.text =
             String(describing: weight)
-        }else{
-            weightPokemonLbl.text = "N/A"
         }
         
-        if let height = heightPokemon{
+        if let height = pokemon?.height{
             heightPokemonLbl.text =
             String(describing: height)
-        }else{
-            heightPokemonLbl.text = "N/A"
         }
         
-        if let url = URL(string : imgPokemon ?? ""){
+        if let url = URL(string : pokemon?.sprites.other?.officialArtwork.frontDefault ?? ""){
             if let imgData = try? Data(contentsOf: url){
                 let image = UIImage(data: imgData)
                 informatioImageView.image = image
@@ -95,18 +61,6 @@ class InformationViewController: UIViewController {
         oneStack.widthAnchor.constraint(equalToConstant: stackWidth).isActive = true
         
         twoStack.widthAnchor.constraint(equalToConstant: stackWidth).isActive = true
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
