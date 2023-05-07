@@ -37,10 +37,8 @@ class ViewController: UIViewController {
             collectioViewPokedex.delegate = self
             collectioViewPokedex.register(UINib(nibName: "CollectionViewCellPokemon", bundle: nil), forCellWithReuseIdentifier: "cellPokemon")
             
-            // btnCompare
             btnCompare.setTitle("Compare", for: .normal)
             
-            // pokemonSearchBar
             pokemonSearchBar.delegate = self
         }
     }
@@ -70,11 +68,10 @@ class ViewController: UIViewController {
     
     @IBAction func compareBtnAction(_ sender: Any) {
         performSegue(withIdentifier: "compareSegue", sender: pokemonsToCompare)
-            
     }
 }
 
-// MARK: - UICollectionView
+// MARK: - UICollectionViewDataSource
 extension ViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -117,7 +114,7 @@ extension ViewController: UICollectionViewDataSource{
     
 }
 
-
+// MARK: - UICollectionViewDelegate
 extension ViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -125,43 +122,34 @@ extension ViewController: UICollectionViewDelegate{
         
         if comparePokemonState == true {
             
-            let pokemonStateToCompare = validateStateToCompare()
-            let validatePokemonToCompare = validatePokemonsSelected(pokemonName: pokemon.name)
             let cell = collectioViewPokedex.cellForItem(at: indexPath) as! PokemonCollectionViewCell
             
-            var stateCell = cell.state
-            
-            if stateCell == true {
-                cell.state = false
-                cell.contentView.backgroundColor = .white
-                pokemonsToCompare.removeAll() {$0.name == pokemon.name}
-            }else{
-                cell.state = true
-                cell.contentView.backgroundColor = .blue
-                pokemonsToCompare.append(pokemon)
+            let countPokemonsToCompare = pokemonsToCompare.count
+            let stateCell = cell.state
+            if countPokemonsToCompare >= 2{
+                if stateCell == true {
+                    cell.state = false
+                    cell.contentView.backgroundColor = .white
+                    pokemonsToCompare.removeAll() {$0.name == pokemon.name}
+                }else{
+                   print("nose pueden agregar mas pokemones")
+                }
+            }else {
+                if stateCell == true {
+                    cell.state = false
+                    cell.contentView.backgroundColor = .white
+                    pokemonsToCompare.removeAll() {$0.name == pokemon.name}
+                }else{
+                    cell.state = true
+                    cell.contentView.backgroundColor = .blue
+                    pokemonsToCompare.append(pokemon)
+                }
             }
                 
         }else{
             performSegue(withIdentifier: "informationSegue", sender: pokemon)
         }
         
-        print(pokemonsToCompare.count)
-    }
-    
-    func validateStateToCompare()-> Bool{
-        if pokemonsToCompare.count <= 1 {
-            return true
-        }else {
-            return false
-        }
-    }
-    
-    func validatePokemonsSelected(pokemonName: String)->Bool{
-        if let pokemonFind = pokemonsToCompare.first(where: {$0.name == pokemonName }){
-            return true
-        }else {
-            return false
-        }
     }
 }
 
@@ -188,6 +176,7 @@ extension ViewController: UISearchBarDelegate{
                         await getListPokemon()
                     }
                 }
+        view.endEditing(true)
         collectioViewPokedex.reloadData()
 
     }

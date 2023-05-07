@@ -25,7 +25,6 @@ class InformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(pokemon ?? "","aqui")
         namePokemonLbl.text = pokemon?.name
         typePokemonLbl.text = pokemon?.types[0].type.name
         if let attack = pokemon?.stats[1].baseStat{
@@ -62,7 +61,6 @@ class InformationViewController: UIViewController {
         oneStack.widthAnchor.constraint(equalToConstant: stackWidth).isActive = true
         
         twoStack.widthAnchor.constraint(equalToConstant: stackWidth).isActive = true
-        // Do any additional setup after loading the view.
     }
     
 }

@@ -295,10 +295,10 @@
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="QlJ-KC-Obe" firstAttribute="centerY" secondItem="qbL-fj-aV9" secondAttribute="centerY" id="2Zd-Pq-2P8"/>
                                                     <constraint firstItem="QlJ-KC-Obe" firstAttribute="centerX" secondItem="qbL-fj-aV9" secondAttribute="centerX" id="OHu-es-Y5R"/>
+                                                    <constraint firstAttribute="width" constant="144" id="uEh-tu-PMJ"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EWG-fk-QzP">
@@ -325,7 +325,6 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="R0k-66-TEa" secondAttribute="trailing" id="X75-vA-rOT"/>
                                                             <constraint firstItem="R0k-66-TEa" firstAttribute="leading" secondItem="Tkn-6O-55N" secondAttribute="leading" id="axY-YW-sqf"/>
@@ -452,6 +451,10 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="EWG-fk-QzP" firstAttribute="leading" secondItem="qbL-fj-aV9" secondAttribute="trailing" id="lip-A5-Jg4"/>
+                                            <constraint firstAttribute="trailing" secondItem="EWG-fk-QzP" secondAttribute="trailing" id="mB8-qT-utQ"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
@@ -484,6 +487,7 @@
                                                 <constraints>
                                                     <constraint firstItem="dsK-93-3YM" firstAttribute="centerX" secondItem="dW4-Yl-uPj" secondAttribute="centerX" id="MPS-Ay-LAY"/>
                                                     <constraint firstItem="dsK-93-3YM" firstAttribute="centerY" secondItem="dW4-Yl-uPj" secondAttribute="centerY" id="QkT-jE-uW8"/>
+                                                    <constraint firstAttribute="width" constant="144" id="vta-8L-0sU"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Rll-So-fKx">
@@ -637,6 +641,12 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Rll-So-fKx" secondAttribute="trailing" id="b01-Zp-LhS"/>
+                                            <constraint firstItem="Rll-So-fKx" firstAttribute="leading" secondItem="dW4-Yl-uPj" secondAttribute="trailing" id="eEB-Mw-zok"/>
+                                            <constraint firstAttribute="bottom" secondItem="Rll-So-fKx" secondAttribute="bottom" id="k2l-w9-z7D"/>
+                                            <constraint firstItem="Rll-So-fKx" firstAttribute="top" secondItem="TwS-FA-AsD" secondAttribute="top" id="wnn-T3-1y1"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="tintColor"/>
@@ -668,11 +678,13 @@
                         <outlet property="pokemon1AttackLbl" destination="bkQ-dR-rCJ" id="bEl-hn-fdE"/>
                         <outlet property="pokemon1DefenseLbl" destination="bud-Ap-c0u" id="mxL-Tz-SEn"/>
                         <outlet property="pokemon1HoLbl" destination="5fG-Ah-P3X" id="UK9-qm-zbK"/>
+                        <outlet property="pokemon1Img" destination="QlJ-KC-Obe" id="gg9-Wu-Eg4"/>
                         <outlet property="pokemon1Lbl" destination="dgY-dK-8VD" id="nbQ-77-uOL"/>
                         <outlet property="pokemon1TypeLbl" destination="PA5-Kp-jp0" id="edU-23-PUw"/>
                         <outlet property="pokemon2AttackLbl" destination="Exq-Ws-ilS" id="Nq0-v6-deY"/>
                         <outlet property="pokemon2DefenseLbl" destination="ZIL-mt-p0X" id="om4-JM-gh7"/>
                         <outlet property="pokemon2HpLbl" destination="0Qn-Ch-wrf" id="D75-b2-rq5"/>
+                        <outlet property="pokemon2Img" destination="dsK-93-3YM" id="Nbc-Jg-feS"/>
                         <outlet property="pokemon2NameLbl" destination="e4w-ap-WqO" id="QfB-Iz-GKa"/>
                         <outlet property="pokemon2TypeLbl" destination="Jc5-gZ-4J3" id="7J1-Zh-UHj"/>
                     </connections>
