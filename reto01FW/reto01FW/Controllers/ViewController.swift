@@ -83,6 +83,13 @@ extension ViewController: UICollectionViewDataSource{
         let cell = collectioViewPokedex.dequeueReusableCell(withReuseIdentifier: "cellPokemon", for: indexPath) as? PokemonCollectionViewCell
         
         let pokemon = pokemons[indexPath.row]
+        
+        if verifyPokemon(namePokemon: pokemon.name) == true {
+            cell?.favoriteBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            cell?.favoriteBtn.tintColor = UIColor.red
+            cell?.stateFavorite = true
+        }
+        
         cell!.lblNamePokemon.text = pokemon.name
         cell!.lblTypePokemon.text = pokemon.types[0].type.name
         cell!.imgUrlToFavorite = pokemon.sprites.other?.officialArtwork.frontDefault
@@ -91,7 +98,7 @@ extension ViewController: UICollectionViewDataSource{
         if let data = try? Data(contentsOf:urld) {
             cell!.imgPokemon.image = UIImage(data: data)
             }
-
+        
         return cell!
     }
     
@@ -110,6 +117,25 @@ extension ViewController: UICollectionViewDataSource{
             destinoVC.pokemons = pokemonsToCompare
         }
             
+    }
+    
+    func verifyPokemon(namePokemon: String) ->Bool{
+        var verifyState: Bool?
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<PokemonsFavorite>(entityName: "PokemonsFavorite")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", namePokemon)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let pokemon = results.first {
+                verifyState = true
+            } else {
+                verifyState = false
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error)")
+        }
+        return verifyState ?? false
     }
     
 }
@@ -134,7 +160,6 @@ extension ViewController: UICollectionViewDelegate{
                 }else{
                     view.makeToast("Solo se puede seleccionar 2 pokemones para comparar")
 
-                   print("nose pueden agregar mas pokemones")
                 }
             }else {
                 if stateCell == true {

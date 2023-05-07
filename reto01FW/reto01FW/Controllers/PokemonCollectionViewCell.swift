@@ -57,10 +57,12 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             }
 
             favoriteBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            favoriteBtn.tintColor = UIColor.link
             self.stateFavorite = false
         }else{
             print("no entro")
             favoriteBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favoriteBtn.tintColor = UIColor.red
             
             let objeto = NSManagedObject(entity: entidad, insertInto: context)
             
