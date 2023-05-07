@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-
+import Toast_Swift
 class ViewController: UIViewController {
     
     @IBOutlet weak var btnCompare: UIButton!
@@ -132,6 +132,8 @@ extension ViewController: UICollectionViewDelegate{
                     cell.contentView.backgroundColor = .white
                     pokemonsToCompare.removeAll() {$0.name == pokemon.name}
                 }else{
+                    view.makeToast("Solo se puede seleccionar 2 pokemones para comparar")
+
                    print("nose pueden agregar mas pokemones")
                 }
             }else {

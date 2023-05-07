@@ -7,4 +7,5 @@ target 'reto01FW' do
 
   # Pods for reto01FW
   pod 'Alamofire'
+  pod 'Toast-Swift'
 end
