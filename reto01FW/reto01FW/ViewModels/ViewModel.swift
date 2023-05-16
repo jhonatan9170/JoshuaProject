@@ -20,45 +20,59 @@ class ViewModel {
     
     weak var delegate: ViewDelegate?
     
-    func getPokemonList(completion: @escaping (Result<[PokemonResponse], Error>) -> Void) {
+//    func getPokemonList(completion: @escaping (Result<[PokemonResponse], Error>) -> Void) {
+//        let url = "https://pokeapi.co/api/v2/pokemon?limit=20"
+//
+//        AF.request(url).responseDecodable(of: PokemonListResponse.self) { response in
+//              switch response.result {
+//              case .success(let result):
+//                  for element in result{
+//                     
+//                  }
+//                  completion(pokemonList,nil)
+//              case .failure(let error):
+//                  print(nil, error)
+//              }
+//          }
+//
+//
+//    }
+    
+    func getPokemonList(completion: @escaping ([PokemonResponse]?, Error?) -> Void) {
         let url = "https://pokeapi.co/api/v2/pokemon?limit=20"
 
-        AF.request(url, method: .get).validate(statusCode: 200..<300).responseDecodable(of: PokemonListResponse.self) { response in
+        AF.request(url).responseDecodable(of: PokemonListResponse.self) { response in
             switch response.result {
-            case .success(let pokemonListResponse):
-                let pokemonList = pokemonListResponse.results.map { item in
-                    PokemonListItem(name: item.name, url: item.url)
-                }
+            case .success(let listResponse):
                 let dispatchGroup = DispatchGroup()
-                var pokemonArray = [PokemonResponse]()
-                for pokemonListItem in pokemonList {
+                var pokemonResponses: [PokemonResponse] = []
+
+                for item in listResponse.results {
                     dispatchGroup.enter()
-                    print("aqui",pokemonListItem)
-                    
-                    
-                    AF.request(pokemonListItem.url, method: .get).validate(statusCode: 200..<300).responseDecodable(of: PokemonResponse.self) { response in
-                            switch response.result {
-                            case .success(let pokemonResponse):
-                                print("hola")
-                                pokemonArray.append(pokemonResponse)
-                                dispatchGroup.leave()
-                                print("hola",pokemonArray.count)
-                            case .failure(let error):
-                                completion(.failure(error))
-                            }
+                    AF.request(item.url).responseDecodable(of: PokemonResponse.self) { response in
+                        defer {
+                            dispatchGroup.leave()
                         }
 
+                        switch response.result {
+                        case .success(let pokemonResponse):
+                            pokemonResponses.append(pokemonResponse)
+                        case .failure(let error):
+                            completion(nil, error)
+                        }
+                    }
                 }
+
                 dispatchGroup.notify(queue: .main) {
-                    completion(.success(pokemonArray))
+                    completion(pokemonResponses, nil)
                 }
+
             case .failure(let error):
-                completion(.failure(error))
+                completion(nil, error)
             }
         }
-
-
     }
+
     
     
     
