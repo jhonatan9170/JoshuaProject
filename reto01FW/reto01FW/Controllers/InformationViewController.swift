@@ -51,7 +51,7 @@ class InformationViewController: UIViewController {
             String(describing: height)
         }
         
-        if let url = URL(string : pokemon?.sprites.other?.officialArtwork.frontDefault ?? ""){
+        if let url = URL(string : pokemon?.sprites.other.officialArtwork.frontDefault ?? ""){
             if let imgData = try? Data(contentsOf: url){
                 let image = UIImage(data: imgData)
                 informatioImageView.image = image

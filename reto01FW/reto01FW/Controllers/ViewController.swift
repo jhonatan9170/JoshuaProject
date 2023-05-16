@@ -42,20 +42,27 @@ class ViewController: UIViewController {
         
         pokemonSearchBar.delegate = self
         viewModel.delegate = self
-        viewModel.getPokemonList { result in
-            switch result {
-            case .success(let pokemons):
-                print("pan")
-                self.pokemons = pokemons
-                print(self.pokemons)
-                self.collectioViewPokedex.reloadData()
-                
-            case .failure(let error):
-                
-                print(error)
-            }
+        viewModel.getPokemonList{
+            pokemonResponses, error in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let pokemonResponses = pokemonResponses else {
+                    print("No se encontraron Pokémon")
+                    return
+                }
+           
+                for response in pokemonResponses {
+                    self.pokemons.append(response)
+                    print(response.name)
+                    print(response.weight)
+                    // Otras propiedades de interés
+                }
+            print(self.pokemons[0].name)
+            self.collectioViewPokedex.reloadData()
         }
-        
     }
     
     
@@ -84,14 +91,6 @@ extension ViewController: ViewDelegate{
         self.pokemons = pokemonList
     }
     
-  
-    
-  
-    
-   
-    
-  
-    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -115,8 +114,8 @@ extension ViewController: UICollectionViewDataSource{
         
         cell!.lblNamePokemon.text = pokemon.name
         cell!.lblTypePokemon.text = pokemon.types[0].type.name
-        cell!.imgUrlToFavorite = pokemon.sprites.other?.officialArtwork.frontDefault
-        let urld = URL(string: pokemon.sprites.other?.officialArtwork.frontDefault ?? "")!
+        cell!.imgUrlToFavorite = pokemon.sprites.other.officialArtwork.frontDefault
+        let urld = URL(string: pokemon.sprites.other.officialArtwork.frontDefault ?? "")!
         
         if let data = try? Data(contentsOf:urld) {
             cell!.imgPokemon.image = UIImage(data: data)
@@ -218,26 +217,26 @@ extension ViewController: UICollectionViewDelegateFlowLayout{
 extension ViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        if let searchText = searchBar.text, !searchText.isEmpty {
-            filteredPokemon = pokemons.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-                pokemons = filteredPokemon
-                } else {
-                    
-                      viewModel.getPokemonList{
-                            result in
-                            switch result {
-                            case .success(let pokemonList):
-                                self.pokemons = pokemonList
-                                self.collectioViewPokedex.reloadData()
-                            case .failure(let error):
-                                print(error)
-                            }
-                        
-                    }
-                }
-        view.endEditing(true)
-        collectioViewPokedex.reloadData()
-
-    }
+//        if let searchText = searchBar.text, !searchText.isEmpty {
+//            filteredPokemon = pokemons.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+//                pokemons = filteredPokemon
+//                } else {
+//
+//                      viewModel.getPokemonList{
+//                          result,<#arg#>  in
+//                            switch result {
+//                            case .success(let pokemonList):
+//                                self.pokemons = pokemonList
+//                                self.collectioViewPokedex.reloadData()
+//                            case .failure(let error):
+//                                print(error)
+//                            }
+//
+//                    }
+//                }
+//        view.endEditing(true)
+//        collectioViewPokedex.reloadData()
+//
+   }
 }
 
