@@ -17,10 +17,12 @@ class ViewController: UIViewController {
     
     var numPokemonSelected = 0
     var comparePokemonState = false
-    var pokemons:[PokemonResponse] = []
+   
     var filteredPokemon = [PokemonResponse]()
     var pokemonsToCompare = [PokemonResponse]()
     
+    var viewModel = ViewModel()
+    var pokemons:[PokemonResponse] = []
     private let cellWidth = UIScreen.main.bounds.width / 2
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -31,35 +33,37 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        async {
-            await getListPokemon()
-            collectioViewPokedex.dataSource = self
-            collectioViewPokedex.delegate = self
-            collectioViewPokedex.register(UINib(nibName: "CollectionViewCellPokemon", bundle: nil), forCellWithReuseIdentifier: "cellPokemon")
-            
-            btnCompare.setTitle("Compare", for: .normal)
-            
-            pokemonSearchBar.delegate = self
+        
+        collectioViewPokedex.dataSource = self
+        collectioViewPokedex.delegate = self
+        collectioViewPokedex.register(UINib(nibName: "CollectionViewCellPokemon", bundle: nil), forCellWithReuseIdentifier: "cellPokemon")
+        
+        btnCompare.setTitle("Compare", for: .normal)
+        
+        pokemonSearchBar.delegate = self
+        viewModel.delegate = self
+        viewModel.getPokemonList { result in
+            switch result {
+            case .success(let pokemons):
+                print("pan")
+                self.pokemons = pokemons
+                print(self.pokemons)
+                self.collectioViewPokedex.reloadData()
+                
+            case .failure(let error):
+                
+                print(error)
+            }
         }
+        
     }
     
-    func getListPokemon() async {
-        for id in 1...20 {
-                do {
-                    let pokemon = try await NetworkingProvider.shared.fetchPokemonDetails(id: id)
-                    print(pokemon.name)
-                    self.pokemons.append(pokemon)
-                } catch {
-                    print("Error")
-                    print(error.localizedDescription)
-                }
-            }
-    }
-
+    
+    
     @IBAction func compareStateAction(_ sender: Any) {
 
        comparePokemonState = !comparePokemonState
-        if comparePokemonState == true {
+        if comparePokemonState{
             compareStateBtn.setImage(UIImage(systemName: "seal.fill"),for: .normal)
         }else{
             compareStateBtn.setImage(UIImage(systemName: "seal"),for: .normal)
@@ -69,6 +73,25 @@ class ViewController: UIViewController {
     @IBAction func compareBtnAction(_ sender: Any) {
         performSegue(withIdentifier: "compareSegue", sender: pokemonsToCompare)
     }
+}
+
+extension ViewController: ViewDelegate{
+    func didFailWithError(_ error: Error) {
+        print(error)
+    }
+    
+    func didLoadPokemonList(_ pokemonList: [PokemonResponse]) {
+        self.pokemons = pokemonList
+    }
+    
+  
+    
+  
+    
+   
+    
+  
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -199,8 +222,17 @@ extension ViewController: UISearchBarDelegate{
             filteredPokemon = pokemons.filter { $0.name.lowercased().contains(searchText.lowercased()) }
                 pokemons = filteredPokemon
                 } else {
-                    async{
-                        await getListPokemon()
+                    
+                      viewModel.getPokemonList{
+                            result in
+                            switch result {
+                            case .success(let pokemonList):
+                                self.pokemons = pokemonList
+                                self.collectioViewPokedex.reloadData()
+                            case .failure(let error):
+                                print(error)
+                            }
+                        
                     }
                 }
         view.endEditing(true)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13C5E86891B7488F97CE7D40 /* Pods_reto01FW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8323898EA6E9968A2FAC879F /* Pods_reto01FW.framework */; };
+		570467342A12F74600F0D926 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570467332A12F74600F0D926 /* ViewModel.swift */; };
 		571A6E322A021CE20041ACEF /* PokemonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571A6E312A021CE20041ACEF /* PokemonData.swift */; };
 		572E80AE29F76E1D00E64C8D /* CompareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E80AD29F76E1D00E64C8D /* CompareViewController.swift */; };
 		5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5739160D29F5B93E0005BC1E /* PokemonData.xcdatamodeld */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		07CC2DBDF43BBE1142EC638B /* Pods-reto01FW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reto01FW.release.xcconfig"; path = "Target Support Files/Pods-reto01FW/Pods-reto01FW.release.xcconfig"; sourceTree = "<group>"; };
+		570467332A12F74600F0D926 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		571A6E312A021CE20041ACEF /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
 		572E80AD29F76E1D00E64C8D /* CompareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareViewController.swift; sourceTree = "<group>"; };
 		5739160E29F5B93E0005BC1E /* PokemonData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonData.xcdatamodel; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570467322A12F70E00F0D926 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				570467332A12F74600F0D926 /* ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		571A6E2D2A0216FF0041ACEF /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 		9F8FC86429ED90CD00548589 /* reto01FW */ = {
 			isa = PBXGroup;
 			children = (
+				570467322A12F70E00F0D926 /* ViewModels */,
 				571A6E2D2A0216FF0041ACEF /* Network */,
 				5724EF1329F35B300023C76B /* Views */,
 				5724EF1229F35B230023C76B /* Controllers */,
@@ -283,6 +294,7 @@
 				57590C5D29F5D21F006EE642 /* PokemonsFavorite+CoreDataProperties.swift in Sources */,
 				5739160F29F5B93E0005BC1E /* PokemonData.xcdatamodeld in Sources */,
 				9F8FC87D29ED9A1B00548589 /* PokemonCollectionViewCell.swift in Sources */,
+				570467342A12F74600F0D926 /* ViewModel.swift in Sources */,
 				9F8FC86629ED90CD00548589 /* AppDelegate.swift in Sources */,
 				9F8FC87A29ED91E100548589 /* FavoriteViewController.swift in Sources */,
 				57590C5C29F5D21F006EE642 /* PokemonsFavorite+CoreDataClass.swift in Sources */,
