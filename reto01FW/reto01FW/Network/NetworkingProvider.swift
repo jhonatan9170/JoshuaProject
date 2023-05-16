@@ -26,17 +26,39 @@ final class NetworkingProvider{
         }
     }
         
-func fetchPokemonList(completion: @escaping (Result<[PokemonResponse], Error>) -> Void) {
-            let offset = 0
-            let limit = 20
-            AF.request("https://pokeapi.co/api/v2/pokemon?offset=\(offset)&limit=\(limit)").responseDecodable(of: PokemonList.self) { response in
-                switch response.result {
-                case .success(let pokemonList):
-                    completion(.success(pokemonList.results))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-    }
+//    func getPokemonList(completion: @escaping (Result<[PokemonResponse], Error>) -> Void) {
+//        let url = "https://pokeapi.co/api/v2/pokemon?limit=20"
+//
+//        AF.request(url, method: .get).validate(statusCode: 200..<300).responseDecodable(of: PokemonListResponse.self) { response in
+//            switch response.result {
+//            case .success(let pokemonListResponse):
+//                let pokemonList = pokemonListResponse.results.map { item in
+//                    PokemonListItem(name: item.name, url: item.url)
+//                }
+//                let dispatchGroup = DispatchGroup()
+//                var pokemonArray = [PokemonResponse]()
+//                for pokemonListItem in pokemonList {
+//                    dispatchGroup.enter()
+//                    pokemonListItem.toPokemon { result in
+//                        switch result {
+//                        case .success(let pokemon):
+//                            pokemonArray.append(pokemon)
+//                            dispatchGroup.leave()
+//                        case .failure(let error):
+//                            completion(.failure(error))
+//                        }
+//                    }
+//                }
+//                dispatchGroup.notify(queue: .main) {
+//                    completion(.success(pokemonArray))
+//                }
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
+    
+
+
     
 }

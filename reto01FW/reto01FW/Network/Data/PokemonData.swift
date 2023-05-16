@@ -11,9 +11,29 @@
 //   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
 
 import Foundation
+import Alamofire
+struct PokemonListResponse: Codable{
+    let count: Int
+    let next: URL?
+    let previous: URL?
+    let results: [PokemonListItem]
+}
 
-struct PokemonList: Codable{
-    let results: [PokemonResponse]
+struct PokemonListItem: Codable{
+    let name: String
+    let url: URL
+    
+    
+    func toPokemon(completion: @escaping (Result<PokemonResponse, Error>) -> Void) {
+           AF.request(url).validate(statusCode: 200..<300).responseDecodable(of: PokemonResponse.self) { response in
+               switch response.result {
+               case .success(let pokemon):
+                   completion(.success(pokemon))
+               case .failure(let error):
+                   completion(.failure(error))
+               }
+           }
+       }
 }
 
 // MARK: - Welcome
